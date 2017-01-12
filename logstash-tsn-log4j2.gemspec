@@ -1,12 +1,12 @@
 Gem::Specification.new do |s|
-  s.name            = 'logstash-input-log4j2'
+  s.name            = 'logstash-tsn-log4j2'
   s.version         = '5.2'
   s.licenses        = ['Apache License (2.0)']
   s.summary         = "Read events over a TCP socket from a Log4j2 SocketAppender"
   s.description     = "This gem is a logstash plugin required to be installed on top of the Logstash core pipeline using $LS_HOME/bin/plugin install gemname. This gem is not a stand-alone program"
-  s.authors         = ["Jurriaan Mous"]
-  s.email           = 'jurmous@jurmo.us'
-  s.homepage        = "https://github.com/jurmous/logstash-log4j2"
+  s.authors         = ["Jurriaan Mous / Modified by TSN"]
+  s.email           = 'wardeon+2@gmail.com'
+  s.homepage        = "https://github.com/tnoeding/logstash-log4j2"
   s.require_paths = ["lib"]
 
   # Files

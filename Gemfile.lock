@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    logstash-input-log4j2 (5.2-java)
+    logstash-tsn-log4j2 (5.2-java)
       logstash-core (>= 2.0.0.beta2, < 6.0.0)
 
 GEM
@@ -84,7 +84,7 @@ PLATFORMS
 DEPENDENCIES
   logstash-core
   logstash-devutils
-  logstash-input-log4j2!
+  logstash-tsn-log4j2!
 
 BUNDLED WITH
    1.13.7

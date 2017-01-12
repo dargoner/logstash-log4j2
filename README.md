@@ -7,19 +7,11 @@ Version: 2.1+
 
 ## Get the plugin
 
-### Logstash 1.5+
+### Logstash 5+
 
 Use the install method
 
-```$LS_HOME/bin/plugin install logstash-input-log4j2```
-
-### Logstash 1.4
-
-Download the latest release at: https://github.com/jurmous/logstash-log4j2/releases and unzip it.
-
-If you download the source you also need rake to run ```rake vendor``` to download the correct log4j2 jars.
-
-To run the plugin you need to start logstash with the plugin path `./bin/logstash --pluginpath PATH_TO_PLUGIN -f YOUR_CONF.conf`
+```$LS_HOME/bin/plugin-install logstash-tsn-log4j2```
 
 ## Setup log4j2
 Set log4j2.xml in your project

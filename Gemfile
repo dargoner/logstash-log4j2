@@ -1,3 +1,3 @@
 source 'https://rubygems.org'
 gemspec
-gem "logstash-core"
+gem "logstash-core",">= 5.0.0"

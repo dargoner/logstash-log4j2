@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name            = 'logstash-tsn-log4j2'
-  s.version         = '6'
+  s.version         = '6.0.3'
   s.licenses        = ['Apache License (2.0)']
   s.summary         = "Read events over a TCP socket from a Log4j2 SocketAppender"
   s.description     = "This gem is a logstash plugin required to be installed on top of the Logstash core pipeline using $LS_HOME/bin/plugin install gemname. This gem is not a stand-alone program"

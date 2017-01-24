@@ -1,7 +1,7 @@
 # TSN Makefile for log4j2 Plugin
 default: clean
 	bundle
-	rake
+	rake vendor
 	gem build logstash-tsn-log4j2.gemspec
 
 clean:

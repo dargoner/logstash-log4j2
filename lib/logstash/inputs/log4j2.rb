@@ -112,11 +112,11 @@ class LogStash::Inputs::Log4j2 < LogStash::Inputs::Base
         output_queue << event
       end # loop do
     rescue => e
-      @logger.debug(e)
-      @logger.debug("Closing connection", :client => socket.peer,
+      @logger.info(e)
+      @logger.info("Closing connection", :client => socket.peer,
                     :exception => e)
     rescue Timeout::Error
-      @logger.debug("Closing connection after read timeout",
+      @logger.info("Closing connection after read timeout",
                     :client => socket.peer)
     end # begin
   ensure
@@ -147,7 +147,7 @@ class LogStash::Inputs::Log4j2 < LogStash::Inputs::Base
 
           # monkeypatch a 'peer' method onto the socket.
           s.instance_eval { class << self; include ::LogStash::Util::SocketPeer end }
-          @logger.debug("Accepted connection", :client => s.peer,
+          @logger.info("Accepted connection", :client => s.peer,
                         :server => "#{@host}:#{@port}")
           handle_socket(s, output_queue)
         end # Thread.start
@@ -156,7 +156,7 @@ class LogStash::Inputs::Log4j2 < LogStash::Inputs::Base
       loop do
         client_socket = TCPSocket.new(@host, @port)
         client_socket.instance_eval { class << self; include ::LogStash::Util::SocketPeer end }
-        @logger.debug("Opened connection", :client => "#{client_socket.peer}")
+        @logger.info("Opened connection", :client => "#{client_socket.peer}")
         handle_socket(client_socket, output_queue)
       end # loop
     end

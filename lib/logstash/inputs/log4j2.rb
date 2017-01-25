@@ -47,8 +47,8 @@ class LogStash::Inputs::Log4j2 < LogStash::Inputs::Base
 
     begin
       vendor_dir = ::File.expand_path("../../../vendor/", ::File.dirname(__FILE__))
-      require File.join(vendor_dir, "log4j-api-2.1.jar")
-      require File.join(vendor_dir, "log4j-core-2.1.jar")
+      require File.join(vendor_dir, "log4j-api-2.4.1.jar")
+      require File.join(vendor_dir, "log4j-core-2.4.1.jar")
       require File.join(vendor_dir, "disruptor-3.3.0.jar")
 
       Java::OrgApacheLoggingLog4jCoreImpl.const_get("Log4jLogEvent")

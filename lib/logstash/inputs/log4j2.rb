@@ -85,30 +85,30 @@ class LogStash::Inputs::Log4j2 < LogStash::Inputs::Base
         log4j_obj = ois.readObject
         event = LogStash::Event.new("message" => log4j_obj.getMessage.getFormattedMessage, LogStash::Event::TIMESTAMP => Time.at(log4j_obj.getTimeMillis/1000,log4j_obj.getTimeMillis%1000*1000).gmtime)
         decorate(event)
-        event["host"] = socket.peer
-        event["marker"] = log4j_obj.getMarker.getName if log4j_obj.getMarker
-        event["path"] = log4j_obj.getLoggerName
-        event["priority"] = log4j_obj.getLevel.toString
-        event["logger_name"] = log4j_obj.getLoggerName
-        event["thread"] = log4j_obj.getThreadName
+        event.set('host', socket.peer)
+        event.set('marker', log4j_obj.getMarker.getName) if log4j_obj.getMarker
+        event.set('path', log4j_obj.getLoggerName)
+        event.set('priority', log4j_obj.getLevel.toString)
+        event.set('logger_name', log4j_obj.getLoggerName)
+        event.set('thread', log4j_obj.getThreadName)
         if log4j_obj.getSource()
-          event["class"] = log4j_obj.getSource().getClassName
-          event["file"] = log4j_obj.getSource().getFileName + ":" + log4j_obj.getSource().getLineNumber.to_s
-          event["method"] = log4j_obj.getSource().getMethodName
+          event.set('class', log4j_obj.getSource().getClassName)
+          event.set('file', log4j_obj.getSource().getFileName + ":" + log4j_obj.getSource().getLineNumber.to_s)
+          event.set('method', log4j_obj.getSource().getMethodName)
         end
         # Add the context properties to '@fields'
         if log4j_obj.contextMap
           log4j_obj.contextMap.keySet.each do |key|
-            event["cmap_"+key] = log4j_obj.contextMap.get(key)
+            event.set('cmap_"+key', log4j_obj.contextMap.get(key))
           end
         end
 
         proxy = log4j_obj.getThrownProxy
         if proxy
-          event["stack_trace"] = pretty_print_stack_trace(proxy)
+          event.set('stack_trace', pretty_print_stack_trace(proxy))
         end
 
-        event["cstack"] = log4j_obj.getContextStack.to_a if log4j_obj.getContextStack
+        event.set('cstack', log4j_obj.getContextStack.to_a) if log4j_obj.getContextStack
         output_queue << event
       end # loop do
     rescue => e

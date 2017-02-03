@@ -112,7 +112,6 @@ class LogStash::Inputs::Log4j2 < LogStash::Inputs::Base
         output_queue << event
       end # loop do
     rescue => e
-      @logger.info(e)
       @logger.info("Closing connection", :client => socket.peer,
                     :exception => e)
     rescue Timeout::Error
